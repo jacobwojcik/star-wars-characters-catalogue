@@ -3,9 +3,18 @@
     padding: 2em 1em;
     width: 80%;
 }
+ul{
+    display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  row-gap: 1em;
+}
 li{
     background-color: white;
     color: black;
+    margin: 1em 2em;
+    width: 350px;
     -webkit-box-shadow: -3px 1px 11px 8px rgba(87,130,132,0.78); 
     box-shadow: -3px 1px 11px 8px rgba(87,130,132,0.78);    
     border:none;

@@ -17,9 +17,9 @@ const ItemList = ({name,gender,birth_year,mass,height}:CharProps) => {
 
     return (
         <>
-        <h3>{name}</h3>  
-        <h3>Gender: {gender}</h3>  
-        <h3>Birth year: {birth_year}</h3>  
+        <h2>{name}</h2>  
+        <p>Gender: {gender}</p>  
+        <p>Birth year: {birth_year}</p>  
         <button onClick={expandInfo}>More</button>
         {isOpen ? 
             <div>

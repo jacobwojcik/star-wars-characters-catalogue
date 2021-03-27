@@ -1,54 +1,52 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {getCharacterList} from '../../redux/actions/characterDispatch'
 import ItemList from '../ItemList/ItemList'
+
 import './list.css'
 
-export const List:React.FC = () => {
-    const list_of_chatracters = [
-        {
-            name: "Luke Skywalker", 
-            height: "172", 
-            mass: "77", 
-            hair_color: "blond", 
-            skin_color: "fair", 
-            eye_color: "blue", 
-            birth_year: "19BBY", 
-            gender: "male", 
-            homeworld: "http://swapi.dev/api/planets/1/", 
-        }, 
-        {
-            name: "C-3PO", 
-            height: "167", 
-            mass: "75", 
-            hair_color: "n/a", 
-            skin_color: "gold", 
-            eye_color: "yellow", 
-            birth_year: "112BBY", 
-            gender: "n/a", 
-            homeworld: "http://swapi.dev/api/planets/1/", 
-            
-        }, 
-        
-          
-    ] 
+export const List: React.FunctionComponent = () => {
+
+    const dispatch = useDispatch();
+    const state = useSelector((state:any) => state.characters)
+
+    useEffect(() => {
+        dispatch(getCharacterList());
+        console.log("test");
+      }, [getCharacterList]);
+    
+    const get_load:any = () =>{
+        dispatch(getCharacterList());
+        console.log("DISPATCH");
+    }
+
     return (
         <div className="list">
             <ul>
                 {
-                    list_of_chatracters.map(({name,gender,birth_year,mass,height}) =>
-                    <li key={name}>
-                        <ItemList name = {name} 
-                        gender={gender} 
-                        birth_year={birth_year}
-                        mass={mass}
-                        height={height} />
+                state.map((character:any) =>
+                    <li key={character.name}>
+                        <ItemList name = {character.name} 
+                        gender={character.name} 
+                        birth_year={character.name}
+                        mass={character.name}
+                        height={character.name} />
                         
                     </li>
+
                     )
                 }   
             </ul>
-            <button>Load more</button>
+            <button onClick={get_load}>Load more</button>
         </div>
     )
 }
 
 
+// const mapStateToProps = (store: any) => {
+//     return {
+//       characters: store.characterState.characters,
+//     };
+//   };
+
+//   export default connect(mapStateToProps)(List);
