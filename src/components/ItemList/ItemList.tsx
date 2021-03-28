@@ -1,4 +1,7 @@
 import React,{MouseEvent, useState} from 'react'
+import {useSelector} from 'react-redux'
+
+//import {useSelector} from 'react-redux'
 import "./itemlist.css"
 
 type CharProps = {
@@ -7,10 +10,13 @@ type CharProps = {
     birth_year:string,
     mass:string,
     height:string,
+    movies:string[],
   }
-const ItemList = ({name,gender,birth_year,mass,height}:CharProps) => {
+const ItemList = ({name,gender,birth_year,mass,height,movies}:CharProps) => {
     
-    const [isOpen, setState] = useState(false)
+    const [isOpen, setState] = useState(false);
+    const moviesList = useSelector((state:any) => state.moviesState.movies);
+
     const expandInfo = (event:MouseEvent) =>{
         event.preventDefault();
         setState(!isOpen)
@@ -23,8 +29,13 @@ const ItemList = ({name,gender,birth_year,mass,height}:CharProps) => {
         <p>Birth year: {birth_year}</p>  
         {isOpen ? 
             <div>
-                <p>Mass:{mass}</p>
-                <p>Height{height}</p>
+                <p>Mass: {mass}</p>
+                <p>Height: {height}</p>
+                {
+                    movies.map((movie:string)=>
+                    <p key = {movie}>{moviesList[(parseInt(movie.charAt(movie.length-2))-1)].title}</p>
+                    )
+                }
             </div>
             :
             null

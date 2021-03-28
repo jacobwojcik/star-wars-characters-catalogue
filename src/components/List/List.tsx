@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getCharacterList,getMoreCharacters} from '../../redux/actions/characterDispatch'
+import {getMoviesList} from '../../redux/actions/moviesDispatch'
 import ItemList from '../ItemList/ItemList'
 import {ICharacter} from '../../redux/reducers/CharacterReducer'
 
@@ -9,7 +10,7 @@ import './list.css'
 export const List: React.FunctionComponent = () => {
 
     const dispatch = useDispatch();
-    const characters = useSelector((state:any) => state.characters);
+    const characters = useSelector((state:any) => state.charactersState.characters);
     const isFetched = useSelector((state:any) => state.isFetching);
     const [pageNumber, setStates] = useState({page:2, counter:1});
 
@@ -22,7 +23,8 @@ export const List: React.FunctionComponent = () => {
     useEffect(() => {
         dispatch(getCharacterList());
         console.log("Succesfully get characters");
-      }, [getCharacterList]);
+        dispatch(getMoviesList());
+      }, []);
     
     const loadMore:any = (page_number:IPageNumber) =>{
         dispatch(getMoreCharacters(page_number.page, page_number.counter));
@@ -55,7 +57,8 @@ export const List: React.FunctionComponent = () => {
                         gender={character.gender} 
                         birth_year={character.birth_year}
                         mass={character.mass}
-                        height={character.height} />
+                        height={character.height} 
+                        movies={character.films}/>
                         
                     </li>
 
