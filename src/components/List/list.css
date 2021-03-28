@@ -1,6 +1,6 @@
 .list{
     background-color: rgb(255, 255, 255);
-    padding: 2em 1em;
+    padding: 0 1em;
     width: 80%;
 }
 ul{
@@ -10,13 +10,38 @@ ul{
   align-items: center;
   row-gap: 1em;
 }
+
 li{
-    background-color: white;
-    color: black;
+    position: relative;
     margin: 1em 2em;
-    width: 350px;
-    -webkit-box-shadow: -3px 1px 11px 8px rgba(87,130,132,0.78); 
-    box-shadow: -3px 1px 11px 8px rgba(87,130,132,0.78);    
+    width: 600px;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.25);
     border:none;
     list-style: none;
+    transition: 300ms;
+    margin:200px 0;
+    display:flex;
+    justify-content: center;
+    align-content: flex-start;
+    
+    
+}
+
+
+.more-button{
+    padding: 2em 1em;
+    margin-top: 4em;
+    margin-bottom: 2em;
+    border: none;
+    background-color: rgb(63, 58, 58);
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.more-button:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0,0,0,0.35);
+    background-color: rgb(88, 83, 83);
 }

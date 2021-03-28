@@ -1,4 +1,5 @@
 import React,{MouseEvent, useState} from 'react'
+import "./itemlist.css"
 
 type CharProps = {
     name:string,
@@ -16,11 +17,10 @@ const ItemList = ({name,gender,birth_year,mass,height}:CharProps) => {
     }
 
     return (
-        <>
-        <h2>{name}</h2>  
+        <div onClick={expandInfo}className="item-div"> 
+        <h3>{name}</h3>  
         <p>Gender: {gender}</p>  
         <p>Birth year: {birth_year}</p>  
-        <button onClick={expandInfo}>More</button>
         {isOpen ? 
             <div>
                 <p>Mass:{mass}</p>
@@ -31,7 +31,7 @@ const ItemList = ({name,gender,birth_year,mass,height}:CharProps) => {
         }
 
         
-        </>
+        </div>
     )
 }
 
