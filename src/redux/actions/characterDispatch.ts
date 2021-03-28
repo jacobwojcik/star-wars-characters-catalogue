@@ -16,6 +16,13 @@ export const getCharacterList = () => async (dispatch: any) => {
         }
 }
 
+export const loadingMoreCharacters = () => async (dispatch: any) => {
+    dispatch({
+        type:"LOADING_MORE_CHARACTERS",
+        isFetchingMore:true,
+        });
+}
+
 export const getMoreCharacters = (page_number:number, counter:number) => async (dispatch: any) => {
     try{
 
@@ -32,7 +39,7 @@ export const getMoreCharacters = (page_number:number, counter:number) => async (
         dispatch({
             type:"LOAD_MORE_CHARACTERS_SUCCESS",
             characters:res.data.results.slice(a,b),//6,10
-            isFetching: false,
+            isFetchingMore: false,
             });
     }catch(e){
         console.log(e);

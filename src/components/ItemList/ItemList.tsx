@@ -11,36 +11,40 @@ type CharProps = {
     mass:string,
     height:string,
     movies:string[],
-  }
-const ItemList = ({name,gender,birth_year,mass,height,movies}:CharProps) => {
     
-    const [isOpen, setState] = useState(false);
+  }
+const ItemList = ({name,gender,birth_year,mass,
+    height,movies}:CharProps) => {
+    const isFetched = useSelector((state:any) => state.moviesState.isFetching);
+    const [active, setActive] = useState("");
+    const [contentHeight, setHeight] = useState("0px");
     const moviesList = useSelector((state:any) => state.moviesState.movies);
 
     const expandInfo = (event:MouseEvent) =>{
         event.preventDefault();
-        setState(!isOpen)
+        setActive(active === "" ? "active" : "");
+        setHeight(active === "active" ? "0px" : `500px`)
     }
+    
 
     return (
-        <div onClick={expandInfo}className="item-div"> 
-        <h3>{name}</h3>  
-        <p>Gender: {gender}</p>  
-        <p>Birth year: {birth_year}</p>  
-        {isOpen ? 
-            <div>
-                <p>Mass: {mass}</p>
-                <p>Height: {height}</p>
-                {
-                    movies.map((movie:string)=>
-                    <p key = {movie}>{moviesList[(parseInt(movie.charAt(movie.length-2))-1)].title}</p>
-                    )
-                }
-            </div>
-            :
-            null
-        }
-
+        <div onClick={expandInfo}>
+            <h3>{name}</h3>  
+            <p>Gender: {gender}</p>  
+            <p>Birth year: {birth_year}</p>   
+                <div className={`extended-content${active}`} style={{maxHeight:`${contentHeight}`}}>
+                    <p>Mass: {mass}</p>
+                    <p>Height: {height}</p>
+                    <p>Movies:</p>
+                    { !isFetched ?
+                        
+                        movies.map((movie:string)=>
+                        <p key = {movie}>{moviesList[(parseInt(movie.charAt(movie.length-2))-1)].title}</p>
+                        )
+                        :
+                        null
+                    }
+                </div>
         
         </div>
     )

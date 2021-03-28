@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './assets/App.css';
 import { List } from "./components/List/List"
 
 function App() {

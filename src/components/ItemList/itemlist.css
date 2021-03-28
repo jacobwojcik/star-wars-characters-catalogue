@@ -2,7 +2,7 @@ p{
     font-size: 16px;
 }
 
-.item-div{
+/* .item-div{
     position: absolute;
     color: black;
     top:0;
@@ -15,4 +15,16 @@ p{
 .item-div:hover{
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0,0,0,0.35);
+} */
+
+.extended-content{
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+    max-height: 0;
+    
+}
+.extended-contentactive{
+    overflow: hidden;
+    transition: 1s;
+    
 }
