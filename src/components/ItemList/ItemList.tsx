@@ -29,7 +29,6 @@ const ItemList = ({name,gender,birth_year,mass,height,movies}:CharProps) => {
                     <p>Height: {height} cm</p>
                     <p>Movies:</p>
                     { !isFetched ?
-                        
                         movies.map((movie:string)=>
                         <p key = {movie}>{moviesList[(parseInt(movie.charAt(movie.length-2))-1)].title}</p>
                         )

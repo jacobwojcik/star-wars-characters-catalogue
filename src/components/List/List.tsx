@@ -17,14 +17,14 @@ export const List: React.FunctionComponent<ListProps> = ({searchedCharacter}) =>
     
     const [pageNumber, setStates] = useState({page:2, counter:1});
 
+    //getting data from the API
     useEffect(() => {
-        
         dispatch(getMoviesList());
         dispatch(getCharacterList());
-        console.log("Succesfully get characters");
       }, [dispatch]);
 
-
+    
+    //loading more data
     const loadMore:Function = (page_number:IPageNumber) =>{
         dispatch(getMoreCharacters(page_number.page, page_number.counter));
         console.log(`Load 5 more page ${page_number}`);
@@ -45,6 +45,7 @@ export const List: React.FunctionComponent<ListProps> = ({searchedCharacter}) =>
          });
     }
 
+    //filtering list of characters while searching 
     const filteredCharacters = characters.filter((character:ICharacter) => {
         return (
           character.name
