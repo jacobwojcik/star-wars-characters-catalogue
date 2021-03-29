@@ -10,7 +10,6 @@ function App() {
   const searchFor = (value:string) => {
     let search = value.toLowerCase();
     setSearchedCharacter(search);
-    console.log(searchedCharacter);
   };
 
   return (

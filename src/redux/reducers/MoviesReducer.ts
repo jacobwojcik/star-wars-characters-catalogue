@@ -1,26 +1,5 @@
 import { Reducer } from 'redux';
-
-export interface IMovie {
-    title:string,
-    episode_id:number,
-    opening_crawl:string,
-    director:string,
-    producer:string,
-    release_date:string,
-    characters:string[],
-    planets:string[],
-    starships:string[]
-    vehicles:string[],
-    species:string[],
-    created:string,
-    editied:string,
-    url:string,
-  }
-
-interface IMoviesState {
-    movies: IMovie[],
-    isFetching: Boolean,
-  }
+import {IMoviesState} from '../../interfaces/interfaces'
 
 const initialMoviesState: IMoviesState = {
   movies:[],

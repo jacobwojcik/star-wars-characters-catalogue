@@ -1,7 +1,8 @@
 import axios from 'axios'
+import {AppDispatch} from '../store/store'
 const api_url = "https://swapi.dev/api/people"
 
-export const getCharacterList = () => async (dispatch: any) => {
+export const getCharacterList = () => async (dispatch: AppDispatch) => {
         try{
 
             const res  = await axios.get(api_url);
@@ -16,14 +17,7 @@ export const getCharacterList = () => async (dispatch: any) => {
         }
 }
 
-export const loadingMoreCharacters = () => async (dispatch: any) => {
-    dispatch({
-        type:"LOADING_MORE_CHARACTERS",
-        isFetchingMore:true,
-        });
-}
-
-export const getMoreCharacters = (page_number:number, counter:number) => async (dispatch: any) => {
+export const getMoreCharacters = (page_number:number, counter:number) => async (dispatch: AppDispatch) => {
     try{
 
         const res  = await axios.get(api_url+`?page=${page_number}`);
@@ -38,7 +32,7 @@ export const getMoreCharacters = (page_number:number, counter:number) => async (
         }
         dispatch({
             type:"LOAD_MORE_CHARACTERS_SUCCESS",
-            characters:res.data.results.slice(a,b),//6,10
+            characters:res.data.results.slice(a,b),
             isFetchingMore: false,
             });
     }catch(e){

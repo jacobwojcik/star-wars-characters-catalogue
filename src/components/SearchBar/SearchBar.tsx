@@ -1,10 +1,7 @@
 import React from "react";
+import {SearchProps} from '../../interfaces/interfaces'
 import  "./searchbar.css";
 
-type SearchProps = {
-    searchedCharacter:string,
-    searchFor:Function,
-  }
 
 const SearchBar = (
     { searchedCharacter, searchFor }:SearchProps

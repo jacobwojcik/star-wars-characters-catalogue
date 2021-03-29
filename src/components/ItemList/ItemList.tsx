@@ -1,24 +1,16 @@
 import React,{MouseEvent, useState} from 'react'
 import {useSelector} from 'react-redux'
-
-//import {useSelector} from 'react-redux'
+import {RootState} from '../../redux/store/store'
+import {CharProps} from '../../interfaces/interfaces'
 import "./itemlist.css"
 
-type CharProps = {
-    name:string,
-    gender:string,
-    birth_year:string,
-    mass:string,
-    height:string,
-    movies:string[],
-    
-  }
+
 const ItemList = ({name,gender,birth_year,mass,height,movies}:CharProps) => {
 
-    const isFetched = useSelector((state:any) => state.moviesState.isFetching);
+    const isFetched = useSelector((state:RootState) => state.moviesState.isFetching);
     const [active, setActive] = useState("");
     const [contentHeight, setHeight] = useState("0px");
-    const moviesList = useSelector((state:any) => state.moviesState.movies);
+    const moviesList = useSelector((state:RootState) => state.moviesState.movies);
 
     const expandInfo = (event:MouseEvent) =>{
         event.preventDefault();
