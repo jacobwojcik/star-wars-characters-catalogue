@@ -1,18 +1,22 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getCharacterList,getMoreCharacters,loadingMoreCharacters} from '../../redux/actions/characterDispatch'
+import {getCharacterList,getMoreCharacters} from '../../redux/actions/characterDispatch'
 import {getMoviesList} from '../../redux/actions/moviesDispatch'
 import ItemList from '../ItemList/ItemList'
 import {ICharacter} from '../../redux/reducers/CharacterReducer'
 
 import './list.css'
 
-export const List: React.FunctionComponent = () => {
+type ListProps = {
+    searchedCharacter:string,
+}
+
+export const List: React.FunctionComponent<ListProps> = ({searchedCharacter}) => {
 
     const dispatch = useDispatch();
     const characters = useSelector((state:any) => state.charactersState.characters);
     const isFetched = useSelector((state:any) => state.charactersState.isFetching);
-    let isFetchingMore = useSelector((state:any) => state.charactersState.isFetchingMore);
+    
     const [pageNumber, setStates] = useState({page:2, counter:1});
 
     interface IPageNumber {
@@ -30,8 +34,6 @@ export const List: React.FunctionComponent = () => {
 
 
     const loadMore:any = (page_number:IPageNumber) =>{
-        dispatch(loadingMoreCharacters());
-        
         dispatch(getMoreCharacters(page_number.page, page_number.counter));
         console.log(`Load 5 more page ${page_number}`);
 
@@ -51,6 +53,14 @@ export const List: React.FunctionComponent = () => {
          });
     }
 
+    const filteredCharacters = characters.filter((character:any) => {
+        return (
+          character.name
+            .toLowerCase()
+            .trim()
+            .indexOf(searchedCharacter.toLowerCase().trim()) !== -1
+        );
+      });
     
 
     return (
@@ -62,7 +72,7 @@ export const List: React.FunctionComponent = () => {
                     !isFetched ?
                     
                     
-                        characters.map((character:ICharacter) =>
+                        filteredCharacters.map((character:ICharacter) =>
                             <li key={character.name} 
                             >
                                 <ItemList name = {character.name} 
@@ -83,12 +93,13 @@ export const List: React.FunctionComponent = () => {
                 }
                 
             </ul>
-            {
-                isFetchingMore ?
-                <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
-                :
-                null
-            }
+            {filteredCharacters.length === 0 && !isFetched ? (
+        <div
+          style={{ textAlign: "center", padding: "5em", marginBottom: "10em" }}
+        >
+          <h1>Search for someone else!</h1>
+        </div>
+      ) : null}
             <button className="more-button" onClick={() => loadMore(pageNumber)}>Load more</button>
             
 

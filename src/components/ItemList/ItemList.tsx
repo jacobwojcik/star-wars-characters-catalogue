@@ -13,8 +13,8 @@ type CharProps = {
     movies:string[],
     
   }
-const ItemList = ({name,gender,birth_year,mass,
-    height,movies}:CharProps) => {
+const ItemList = ({name,gender,birth_year,mass,height,movies}:CharProps) => {
+
     const isFetched = useSelector((state:any) => state.moviesState.isFetching);
     const [active, setActive] = useState("");
     const [contentHeight, setHeight] = useState("0px");
@@ -33,8 +33,8 @@ const ItemList = ({name,gender,birth_year,mass,
             <p>Gender: {gender}</p>  
             <p>Birth year: {birth_year}</p>   
                 <div className={`extended-content${active}`} style={{maxHeight:`${contentHeight}`}}>
-                    <p>Mass: {mass}</p>
-                    <p>Height: {height}</p>
+                    <p>Mass: {mass} kg</p>
+                    <p>Height: {height} cm</p>
                     <p>Movies:</p>
                     { !isFetched ?
                         
