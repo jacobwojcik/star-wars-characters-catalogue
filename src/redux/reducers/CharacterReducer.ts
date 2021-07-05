@@ -1,19 +1,17 @@
-import { Reducer } from 'redux';
-import {ICharacterState} from '../../interfaces/interfaces'
-
+import { Reducer } from "redux";
+import { ICharacterState } from "../../interfaces/interfaces";
 
 const initialCharacterState: ICharacterState = {
-  characters:[],
+  characters: [],
   isFetching: true,
   isFetchingMore: false,
 };
 
-const CharacterReducer: Reducer<ICharacterState> =(
+const CharacterReducer: Reducer<ICharacterState> = (
   state = initialCharacterState,
   action
 ) => {
   switch (action.type) {
-    
     case "GET_CHARACTERS_SUCCESS": {
       return {
         ...state,
@@ -21,13 +19,13 @@ const CharacterReducer: Reducer<ICharacterState> =(
         isFetching: action.isFetching,
       };
     }
-    case "LOADING_MORE_CHARACTERS":{
+    case "LOADING_MORE_CHARACTERS": {
       return {
         ...state,
         isFetchingMore: action.isFetching,
       };
     }
-    case "LOAD_MORE_CHARACTERS_SUCCESS":{
+    case "LOAD_MORE_CHARACTERS_SUCCESS": {
       let temp_array = [...state.characters];
       temp_array.push(...action.characters);
       return {

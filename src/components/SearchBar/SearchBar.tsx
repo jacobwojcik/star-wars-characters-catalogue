@@ -1,14 +1,11 @@
 import React from "react";
-import {SearchProps} from '../../interfaces/interfaces'
-import  "./searchbar.css";
+import { SearchProps } from "../../interfaces/interfaces";
+import "./searchbar.css";
 
-
-const SearchBar = (
-    { searchedCharacter, searchFor }:SearchProps
-    ) => {
+const SearchBar = ({ searchedCharacter, searchFor }: SearchProps) => {
   return (
     <>
-      <form  onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           placeholder="Search for your favorite character"

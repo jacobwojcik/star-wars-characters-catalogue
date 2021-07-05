@@ -1,17 +1,16 @@
-import { Reducer } from 'redux';
-import {IMoviesState} from '../../interfaces/interfaces'
+import { Reducer } from "redux";
+import { IMoviesState } from "../../interfaces/interfaces";
 
 const initialMoviesState: IMoviesState = {
-  movies:[],
+  movies: [],
   isFetching: true,
 };
 
-const MoviesReducer: Reducer<IMoviesState> =(
+const MoviesReducer: Reducer<IMoviesState> = (
   state = initialMoviesState,
   action
 ) => {
   switch (action.type) {
-    
     case "GET_MOVIES_SUCCESS": {
       return {
         movies: action.movies,
